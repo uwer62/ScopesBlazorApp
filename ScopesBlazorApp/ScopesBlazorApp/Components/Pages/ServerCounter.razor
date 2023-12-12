@@ -1,0 +1,27 @@
+﻿@page "/ServerCounter"
+@rendermode InteractiveServer
+
+@inject CounterService counterService
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+
+    protected override void OnParametersSet()
+    {
+        currentCount = counterService.CurrentCount;
+        base.OnParametersSet();
+    }
+
+    private void IncrementCount()
+    {
+        currentCount = counterService.IncrementCounter();
+    }
+}
